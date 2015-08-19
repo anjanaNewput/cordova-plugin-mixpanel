@@ -7,8 +7,8 @@ Mixpanel.prototype.init = function(token, successCallback, failureCallback) {
 };
 
 //set mixpanel project token
-Mixpanel.prototype.alias = function(token, successCallback, failureCallback) {
-  return cordova.exec(successCallback, failureCallback, 'Mixpanel', 'alias', [token]);
+Mixpanel.prototype.alias = function(id, successCallback, failureCallback) {
+  return cordova.exec(successCallback, failureCallback, 'Mixpanel', 'alias', [id]);
 };
 
 //identify a user

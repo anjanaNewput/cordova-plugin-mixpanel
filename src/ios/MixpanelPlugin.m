@@ -44,7 +44,6 @@ NSData *CreateDataWithHexString(NSString *inputString)
     Mixpanel* mixpanelInstance = [Mixpanel sharedInstance];
     NSArray* arguments = command.arguments;
     NSString* aliasId = [arguments objectAtIndex:0];
-    NSString* originalId = [arguments objectAtIndex:1];
 
     if (mixpanelInstance == nil)
     {
@@ -56,7 +55,7 @@ NSData *CreateDataWithHexString(NSString *inputString)
     }
     else
     {
-        [mixpanelInstance createAlias:aliasId forDistinctID:originalId];
+        [mixpanelInstance createAlias:aliasId forDistinctID:mixpanelInstance.distinctId];
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
     }
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];

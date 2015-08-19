@@ -115,12 +115,11 @@ public class MixpanelPlugin extends CordovaPlugin {
 
     private boolean handleAlias(JSONArray args, final CallbackContext cbCtx) {
         String aliasId = args.optString(0, "");
-        String originalId = args.optString(1, null);
         if (TextUtils.isEmpty(aliasId)) {
             this.error(cbCtx, "missing alias id");
             return false;
         }
-        mixpanel.alias(aliasId, originalId);
+        mixpanel.alias(aliasId, null);
         cbCtx.success();
         return true;
     }

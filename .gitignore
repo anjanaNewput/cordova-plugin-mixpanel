@@ -1,0 +1,72 @@
+# ANDROID / ECLIPSE
+
+# files for the dex VM
+*.dex
+
+# Java class files
+*.class
+
+# generated files - android project subfolder
+platforms/android/bin/
+platforms/android/gen/
+platforms/android/assets/
+platforms/android/ant-build/
+platforms/android/ant-gen/
+
+platforms/android/CordovaLib/bin/
+platforms/android/CordovaLib/gen/
+platforms/android/CordovaLib/assets/
+platforms/android/CordovaLib/ant-build/
+platforms/android/CordovaLib/ant-gen/
+
+platforms/android/mixpanel/src/main/ant-build/
+platforms/android/mixpanel/src/main/ant-gen/
+
+platforms/android/out/
+
+*.ap_
+*.ap_.*
+build.prop
+Bidgely-debug*
+
+# generated files
+bin/
+gen/
+out/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# IOS / Xcode
+build/*
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+*.xcworkspace
+!default.xcworkspace
+xcuserdata
+profile
+*.moved-aside
+platforms/ios/www/
+*.xcuserstate
+platforms/ios/cordova/console.log
+
+# OSX
+.DS_Store
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+#IDE
+.idea
+*.iml
+
