@@ -17,6 +17,7 @@ import org.json.JSONObject;
 public class MixpanelPlugin extends CordovaPlugin {
     private static String LOG_TAG = "MIXPANEL PLUGIN";
     private static MixpanelAPI mixpanel;
+    private static bool IS_DEBUG = false;
 
     private enum Action {
         // MIXPANEL API
@@ -54,7 +55,7 @@ public class MixpanelPlugin extends CordovaPlugin {
     }
 
     private void log(String message) {
-        return; //Remove when need to debug with log
+        if(IS_DEBUG) return;
         LOG.e(LOG_TAG, message);
     }
 
