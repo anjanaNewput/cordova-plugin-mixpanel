@@ -54,6 +54,10 @@ public class MixpanelPlugin extends CordovaPlugin {
     }
 
     private void log(String message) {
+        return; //Remove when need to debug with log
+        LOG.e(LOG_TAG, message);
+    }
+
     @Override
     public boolean execute(String action, JSONArray args, final CallbackContext cbCtx) {
         // throws JSONException
@@ -120,6 +124,7 @@ public class MixpanelPlugin extends CordovaPlugin {
             this.error(cbCtx, "missing alias id");
             return false;
         }
+        this.log("mixpanel.alias aliasId:" + aliasId);
         mixpanel.alias(aliasId, null);
         cbCtx.success();
         return true;
@@ -133,6 +138,7 @@ public class MixpanelPlugin extends CordovaPlugin {
                 cbCtx.success();
             }
         };
+        this.log("mixpanel.flush");
         cordova.getThreadPool().execute(runnable);
         cbCtx.success();
         return true;
@@ -144,6 +150,7 @@ public class MixpanelPlugin extends CordovaPlugin {
             this.error(cbCtx, "missing unique id");
             return false;
         }
+        this.log("mixpanel.identify uniqueId:" + uniqueId);
         mixpanel.identify(uniqueId);
         mixpanel.getPeople().identify(uniqueId);
         cbCtx.success();
@@ -156,6 +163,7 @@ public class MixpanelPlugin extends CordovaPlugin {
             this.error(cbCtx, "missing token for mixpanel project");
             return false;
         }
+        this.log("MixpanelAPI.getInstance token:" + token);
         Context ctx = cordova.getActivity();
         mixpanel = MixpanelAPI.getInstance(ctx, token);
         cbCtx.success();
@@ -163,6 +171,7 @@ public class MixpanelPlugin extends CordovaPlugin {
     }
 
     private boolean handleReset(JSONArray args, final CallbackContext cbCtx) {
+        this.log("mixpanel.reset");
         mixpanel.reset();
         cbCtx.success();
         return true;
@@ -179,6 +188,7 @@ public class MixpanelPlugin extends CordovaPlugin {
         if (properties == null) {
             properties = new JSONObject();
         }
+        this.log("mixpanel.track event:" + event + ", properties:" + properties.toString());
         mixpanel.track(event, properties);
         cbCtx.success();
         return true;
@@ -189,6 +199,7 @@ public class MixpanelPlugin extends CordovaPlugin {
         if (properties == null) {
             properties = new JSONObject();
         }
+        this.log("mixpanel.registerSuperProperties properties:" + properties.toString());
         mixpanel.registerSuperProperties(properties);
         cbCtx.success();
         return true;
@@ -200,6 +211,7 @@ public class MixpanelPlugin extends CordovaPlugin {
             this.error(cbCtx, "missing push id");
             return false;
         }
+        this.log("mixpanel.getPeople().setPushRegistrationId registrationId:" + pushId);
         mixpanel.getPeople().setPushRegistrationId(pushId);
         cbCtx.success();
         return true;
@@ -211,6 +223,7 @@ public class MixpanelPlugin extends CordovaPlugin {
             this.error(cbCtx, "missing distinct id");
             return false;
         }
+        this.log("mixpanel.getPeople().identify distinctId:" + distinctId);
         mixpanel.getPeople().identify(distinctId);
         cbCtx.success();
         return true;
@@ -222,6 +235,7 @@ public class MixpanelPlugin extends CordovaPlugin {
             this.error(cbCtx, "missing people properties object");
             return false;
         }
+        this.log("mixpanel.getPeople().set properties:" + properties.toString());
         mixpanel.getPeople().set(properties);
         cbCtx.success();
         return true;
