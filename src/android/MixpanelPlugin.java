@@ -53,6 +53,7 @@ public class MixpanelPlugin extends CordovaPlugin {
         cbCtx.error(message);
     }
 
+    private void log(String message) {
     @Override
     public boolean execute(String action, JSONArray args, final CallbackContext cbCtx) {
         // throws JSONException
@@ -144,6 +145,7 @@ public class MixpanelPlugin extends CordovaPlugin {
             return false;
         }
         mixpanel.identify(uniqueId);
+        mixpanel.getPeople().identify(uniqueId);
         cbCtx.success();
         return true;
     }
