@@ -9,3 +9,6 @@ A cordova plugin for mixpanel.
 ```
 cordova plugin add https://github.com/suspiration/cordova-plugin-mixpanel.git
 ```
+
+#### ios
+After successfully installing the plugin, need to manually add Mixpanel.framework as an "Embedded Binaries" within Xcode.  Within Xcode, go to General tab for the build target, then add Mixpanel.framework in the Embedded Binaries section.
