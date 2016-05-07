@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 #import <Cordova/CDV.h>
-#import "Mixpanel.h"
+#import <Mixpanel/Mixpanel.h>
 
 @interface MixpanelPlugin : CDVPlugin
 {
