@@ -147,9 +147,12 @@ public class MixpanelPlugin extends CordovaPlugin {
 
     private boolean handleIdentify(JSONArray args, final CallbackContext cbCtx) {
         String uniqueId = args.optString(0, "");
-        if (TextUtils.isEmpty(uniqueId)) {
-            this.error(cbCtx, "missing unique id");
-            return false;
+        if (TextUtils.isEmpty(uniqueId) || uniqueId == "null") {
+          this.log("mixpanel.identify uniqueId empty:" + mixpanel.getDistinctId() + ", " + mixpanel.getPeople().getDistinctId());
+          mixpanel.identify(mixpanel.getDistinctId());
+          mixpanel.getPeople().identify(mixpanel.getPeople().getDistinctId());
+          cbCtx.success();
+          return true;
         }
         this.log("mixpanel.identify uniqueId:" + uniqueId);
         mixpanel.identify(uniqueId);
