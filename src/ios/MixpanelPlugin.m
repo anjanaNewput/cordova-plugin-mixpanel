@@ -84,7 +84,7 @@ NSData *CreateDataWithHexString(NSString *inputString)
     Mixpanel* mixpanelInstance = [Mixpanel sharedInstance];
     NSArray* arguments = command.arguments;
     NSString* distinctId = [arguments objectAtIndex:0];
-
+    if(distinctId == (id)[NSNull null] || distinctId.length == 0) distinctId = mixpanelInstance.distinctId;
     if (mixpanelInstance == nil)
     {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Mixpanel not initialized"];
@@ -131,6 +131,8 @@ NSData *CreateDataWithHexString(NSString *inputString)
     else
     {
         [mixpanelInstance reset];
+        NSString *uuid = [[NSUUID UUID] UUIDString];
+        [mixpanelInstance identify:uuid];
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
     }
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
